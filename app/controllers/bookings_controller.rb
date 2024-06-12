@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   # TODO before_action: set_booking
 
   def index
-    @bookings = Booking.where(user_id: current_user)
+    @bookings = Booking.where(user_id: current_user.id)
   end
 
   def new
@@ -18,8 +18,10 @@ class BookingsController < ApplicationController
    @booking.status = "pending"
    # recuperer le start date et end date
    # calculer le nombre de jours de difference entre les 2
+    num_days = (end_date - start_date).to_i
    # multiplier le resultat par @car.price
-   @booking.booking_price = Car.find(params[:car_id]).booking_price
+   @booking.booking_price = num_days * @car.price
+   raise
    if @booking.save
     redirect_to bookings_path, status: :see_other
    else
