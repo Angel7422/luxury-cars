@@ -8,6 +8,7 @@ class CarsController < ApplicationController
   end
 
   def create
+
   end
 
   def show
@@ -19,5 +20,6 @@ class CarsController < ApplicationController
   private
 
   def set_car
+
   end
 end
