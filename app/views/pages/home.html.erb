@@ -1,8 +1,15 @@
-<div class="container">
-  <div class="row">
+<div class="container px-4 text-center">
+  <div class="row gx-5">
     <div class="col">
       <h1>Luxury Cars</h1>
         <p>Luxury at your fingertips: reserve your dream car now</p>
+
+        <% if user_signed_in? %>
+          <p>Welcome <%= current_user.email %></p>
+        <% else %>
+          <p><%= link_to "Sign up", new_user_registration_path %></p>
+          <p><%= link_to "Log in", new_user_session_path %></p>
+        <% end %>
     </div>
   </div>
 </div>
