@@ -11,22 +11,22 @@ class BookingsController < ApplicationController
   end
 
   def create
-   @car = Car.find(params[:car_id])
-   @booking = Booking.new(booking_params)
-   @booking.car = @car
-   @booking.user = current_user
-   @booking.status = "pending"
-   # recuperer le start date et end date
-   # calculer le nombre de jours de difference entre les 2
+    @car = Car.find(params[:car_id])
+    @booking = Booking.new(booking_params)
+    @booking.car = @car
+    @booking.user = current_user
+    @booking.status = "pending"
+    # recuperer le start date et end date
+    # calculer le nombre de jours de difference entre les 2
     num_days = (end_date - start_date).to_i
-   # multiplier le resultat par @car.price
-   @booking.booking_price = num_days * @car.price
-   raise
-   if @booking.save
+    # multiplier le resultat par @car.price
+    @booking.booking_price = num_days * @car.price
+    raise
+    if @booking.save
     redirect_to bookings_path, status: :see_other
-   else
+    else
     render :new, status: :unprocessable_entity
-   end
+    end
   end
 
   def validate; end
