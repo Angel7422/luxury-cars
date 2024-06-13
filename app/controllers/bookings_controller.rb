@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
   # TODO before_action: set_booking
-
   def index
     @bookings = Booking.where(user_id: current_user.id)
   end
@@ -21,11 +20,10 @@ class BookingsController < ApplicationController
     num_days = (end_date - start_date).to_i
     # multiplier le resultat par @car.price
     @booking.booking_price = num_days * @car.price
-    raise
     if @booking.save
-    redirect_to bookings_path, status: :see_other
+      redirect_to bookings_path, status: :see_other
     else
-    render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
